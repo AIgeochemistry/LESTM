@@ -534,7 +534,7 @@ for t_step = 1:numYears
 
 
     num_pool_pixels = sum(pool_matrix(:));
-    fprintf('  pool_matrix 中的像元数量: %d\n', num_pool_pixels);
+    
     CNPS_input_ton_year = DIN_leach_ton_year(pool_matrix) + Pi_leach_ton_year(pool_matrix) + Sinorg_leach_ton_year(pool_matrix); 
 
 
