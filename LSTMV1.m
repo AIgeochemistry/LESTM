@@ -1,4 +1,4 @@
-%% 1. Land Earth System Terrestrial Model (LESTM) V1.0
+%% 1. Land Earth System Model (LESTM) V1.0
 %==========================================================================
 % Lead Researchers:
 %   Researcher Minming Cui
