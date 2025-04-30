@@ -42,7 +42,7 @@ for y = 1:numYears
     precipFile = sprintf('your_data', year);
     [precip_data, ~] = readgeoraster(precipFile, 'OutputType', 'double');
     precip_data(precip_data == -9999) = NaN;  
-    Precipitation_mm_year(:,:,y) = precip_data * scale_factor * 365; 
+    Precipitation_mm_year(:,:,y) = precip_data * scale_factor; 
     Precipitation_mm_year(:,:,y) = fillmissing(Precipitation_mm_year(:,:,y), 'constant', 0);
 end
 
@@ -78,11 +78,11 @@ water_density = ;
 rock_density = ; 
 k_bedrock = ;     
 k_transport = ; 
+
 m_sp = ;  
 n_sp = ;  
 sp_crit = ;
 F_f = ;
-solver = 'basic';
 dt_min = ;  
 
 [~, linearIdx] = min(DEM(:),[],'omitnan');
@@ -141,19 +141,19 @@ soil_mass_t_ha_matrix(isnan(soil_mass_t_ha_matrix) | soil_mass_t_ha_matrix == 0)
 Cd_initial_mg_ha = Cd_initial_mg_kg .* soil_mass_t_ha_matrix * 1000; 
 Hg_initial_mg_ha = Hg_initial_mg_kg .* soil_mass_t_ha_matrix * 1000;  
 As_initial_mg_ha = As_initial_mg_kg .* soil_mass_t_ha_matrix * 1000;  
-SOC = SOC_initial_value_t_ha * exp(-0.02 * slope) .* maskofElevation;   
-SIC = SIC_initial_value_t_ha * exp(-0.01 * slope) .* maskofElevation;    
-DON = DON_initial_value_t_ha * exp(-0.03 * slope) .* maskofElevation;   
-DIN = DIN_initial_value_t_ha * exp(-0.02 * slope) .* maskofElevation;    
-POP = POP_initial_value_t_ha * exp(-0.04 * slope) .* maskofElevation;   
-Pi = Pi_initial_value_t_ha * exp(-0.03 * slope) .* maskofElevation;     
-Sorg = Sorg_initial_value_t_ha * exp(-0.025 * slope) .* maskofElevation;  
-Sinorg = Sinorg_initial_value_t_ha * exp(-0.02 * slope) .* maskofElevation;
-O2 = O2_initial * ones(numRows, numCols) .* maskofElevation;     
-OR = OR_initial_t_ha * ones(numRows, numCols) .* maskofElevation; 
-Cd = Cd_initial_mg_ha .* maskofElevation;  
-Hg = Hg_initial_mg_ha .* maskofElevation;  
-As = As_initial_mg_ha .* maskofElevation;  
+SOC = SOC_initial_value_t_ha;   
+SIC = SIC_initial_value_t_ha;    
+DON = DON_initial_value_t_ha;   
+DIN = DIN_initial_value_t_ha    
+POP = POP_initial_value_t_ha;   
+Pi = Pi_initial_value_t_ha;     
+Sorg = Sorg_initial_value_t_ha;  
+Sinorg = Sinorg_initial_value_t_ha;
+O2 = O2_initial * ones(numRows, numCols);     
+OR = OR_initial_t_ha * ones(numRows, numCols); 
+Cd = Cd_initial_mg_ha;  
+Hg = Hg_initial_mg_ha;  
+As = As_initial_mg_ha;  
 
 metal_generated_ratio_Cd = ;  
 metal_generated_ratio_Hg = ; 
